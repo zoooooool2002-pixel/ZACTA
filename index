@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="هيئة الزكاة والضريبي والجمارك والدخل في المملكة العربية السعودية - Zakat, Tax and Customs Authority in - QR Code TLV" />
+  <meta name="keywords" content="هيئة الزكاة,الضريبي,الجمارك,الدخل,Zakat,Tax,Customs Authority,QR Code,TLV QR Code TLV,المملكة العربية السعودية,Saudi Arabia,FATOORA,TLV QR Code,TLV,E-invoicing,كيو ار كود,ZATCA QR Code,ZATCA,TLV code,QR Code TVL" />
+  <meta name="author" content="Ahmed Mansour | Mobile: +971505272246" />
+  <title>ZATCA Phase 2 TLV QR Generator</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .table { width:100%; border-collapse:collapse; }
+    .table th, .table td { padding: 10px; vertical-align: top; }
+    .table th { text-align:left; width: 200px; }
+    .table-responsive { overflow:auto; }
+    .card { padding:16px; border-radius:10px; background:#fff; box-shadow:0 8px 25px rgba(0,0,0,0.05); margin-bottom:16px; }
+    .page-title { font-size:22px; font-weight:700; margin-bottom:14px; }
+    input[type=text], input[type=time], textarea { width:100%; border:1px solid #ccc; border-radius:5px; padding:8px; }
+    input[type=button], input[type=submit] { cursor:pointer; }
+    .grid-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .grid-col { flex:1; min-width:220px; }
+    .label-title { font-weight:700; margin-bottom:6px; display:block; }
+    textarea[readonly], input[readonly] { background:#f5f7fb; }
+  </style>
+</head>
+<body>
+  <form method="post" action="./" id="form1">
+    <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+    <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+    <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+    <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="" />
+    <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="" />
+
+    <div class="card">
+      <div class="page-title">QR Code TLV</div>
+      <div style="margin-bottom:12px;color:#374151;font-size:14px;line-height:1.5;">
+        Use this page to generate ZATCA Phase 2 compliant TLV QR data for invoices. Enter the required invoice details, then click <strong>Generate Phase 2 QR</strong> to build the TLV payload and preview the QR code.
+      </div>
+      <div class="table-responsive" style="display:inline-block;width:470px;border-right:1px solid #f4f5fa;background-color:#f4f7fb;padding:16px;border-radius:8px;vertical-align:top;">
+        <table class="table">
+          <thead>
+            <tr><th colspan="2">Seller’s Information</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Name</td><td><input name="textBox_Seller_name" type="text" id="textBox_Seller_name" placeholder="Seller name" /></td></tr>
+            <tr><td>VAT registration</td><td><input name="textBox_VAT_registration" type="text" id="textBox_VAT_registration" placeholder="VAT registration" /><input type="hidden" name="HiddenField_VAT_registration" id="HiddenField_VAT_registration" value="" /></td></tr>
+            <tr><td>Date stamp</td><td><input name="TextBox_date" type="text" id="TextBox_date" placeholder="YYYY/MM/DD" /></td></tr>
+            <tr><td>Time stamp</td><td><input name="TextBox_Time" type="time" id="TextBox_Time" /></td></tr>
+            <tr><td>Total</td><td><input name="textBox_Invoice_total" type="text" id="textBox_Invoice_total" placeholder="0.00" /></td></tr>
+            <tr><td>Discount</td><td><input name="textBox_Discount" type="text" id="textBox_Discount" placeholder="0.00" /></td></tr>
+            <tr><td>Total Excluding VAT</td><td><input name="textBox_Total_Excluding_VAT" type="text" readonly="readonly" id="textBox_Total_Excluding_VAT" /></td></tr>
+            <tr><td>VAT Amount</td><td><input name="textBox_VAT_total" type="text" readonly="readonly" id="textBox_VAT_total" /></td></tr>
+            <tr><td>Total Including VAT (SAR)</td><td><input name="textBox_Total_Including_VAT" type="text" readonly="readonly" id="textBox_Total_Including_VAT" /></td></tr>
+            <tr>
+              <td colspan="2" style="text-align:center; padding-top:12px;">
+                <input type="button" name="Button_Generate_QR_Code" value="QR Code Phase 2" onclick="this.disabled=true;this.value = 'Loading . . .';__doPostBack('Button_Generate_QR_Code','')" id="Button_Generate_QR_Code" style="color: #fff; background-color: #4ed13b; padding: 10px 20px; border-radius: 5px;" />
+              </td>
+            </tr>
+            <tr>
+              <td>QR Code</td>
+              <td><img id="Image1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f4f7fb'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%236b7280' font-family='Arial,Helvetica,sans-serif' font-size='14'%3EQR image appears here%3C/text%3E%3C/svg%3E" alt="QR code preview" style="border-radius:0px;width:200px;height:200px;object-fit:cover;" /></td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td><span id="Label_Error" style="color:#dc2626;font-weight:600;"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-responsive" style="display:inline-block;width:auto;vertical-align:top;padding:16px;">
+        <table class="table">
+          <thead>
+            <tr><th colspan="2">Generate Invoice</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Seller’s Address</td><td><textarea name="TextBox_company_info" rows="2" cols="20" id="TextBox_company_info" placeholder="Seller address"></textarea><div style="margin-top:10px;"><span>Header height</span><input name="textBox_Header_High" type="text" value="5" id="textBox_Header_High" style="width:100px;margin-left:10px;" /><br /><span>Footer height</span><input name="TextBox_Footer_High" type="text" value="5" id="textBox_Footer_High" style="width:100px;margin-left:10px;" /></div></td></tr>
+            <tr><td>Customer Name</td><td><input name="textBox_Customer_Name" type="text" id="textBox_Customer_Name" style="width:220px;" /><span style="margin-left:10px;">Customer number</span><input name="textBox_Customer_NO" type="text" id="textBox_Customer_NO" style="width:220px;" /></td></tr>
+            <tr><td>Customer VAT NO</td><td><input name="textBox_Customer_VAT_NO" type="text" id="textBox_Customer_VAT_NO" style="width:220px;" /><span style="margin-left:10px;">Account Type</span><input name="TextBox_Account_Type" type="text" id="TextBox_Account_Type" style="width:220px;" /></td></tr>
+            <tr><td>Invoice NO</td><td><input name="TextBox_Invoice_NO" type="text" value="" readonly="readonly" id="TextBox_Invoice_NO" style="width:220px;" /><span style="margin-left:10px;">Ref NO / PO Number</span><input name="TextBox_Ref_NO" type="text" id="TextBox_Ref_NO" style="width:220px;" /></td></tr>
+            <tr><td>Notes</td><td><textarea name="TextBox_Notes" rows="2" cols="20" id="TextBox_Notes" style="width:520px;height:70px;"></textarea></td></tr>
+            <tr><td>Item Name</td><td><input name="TextBox_Item_Name" type="text" id="TextBox_Item_Name" placeholder="Item Name" style="width:400px;" /><span style="margin-left:10px;">QTY</span><input name="TextBox_QTY" type="text" id="TextBox_QTY" placeholder="QTY" style="width:80px;" /><span style="margin-left:10px;">Price</span><input name="TextBox_Price" type="text" id="TextBox_Price" placeholder="Price" style="width:120px;" /><input type="submit" name="Button_ADD" value="Add item" id="Button_ADD" style="color: #fff; background-color: #4ed13b; padding: 10px 20px; border-radius: 5px; border: none; margin-left: 10px;" /></td></tr>
+            <tr><td></td><td><input type="submit" name="Button_Generate_invoice" value="Generate Invoice" id="Button_Generate_invoice" style="color: #fff; background-color: #3b86d1; padding: 10px 20px; border-radius: 5px;" /></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:20px;">
+        <h3>TLV Base64</h3>
+        <textarea id="tlvOutput" rows="4" style="width:100%;border:1px solid #ccc;border-radius:5px;padding:8px;" readonly></textarea>
+        <div style="margin-top:8px;color:#4b5563;font-size:13px;">Generated Base64 TLV output can be copied for ZATCA Phase 2 QR code validation and UBL invoicing workflows.</div>
+      </div>
+    </div>
+  </form>
+
+  <script id="qrcode-lib" src="./qrcode.min.js?cachebuster=1"></script>
+  <script>
+    function $(id){return document.getElementById(id);}
+    function __doPostBack(eventTarget,eventArgument){ $('__EVENTTARGET').value=eventTarget; $('__EVENTARGUMENT').value=eventArgument; return false; }
+    const enc = s => new TextEncoder().encode(String(s));
+    const dec = b => new TextDecoder().decode(b);
+    function arrayBufferToBase64(buf){ const bytes=new Uint8Array(buf); let bin=''; for(let i=0;i<bytes.length;i+=0x8000){ bin += String.fromCharCode.apply(null, bytes.subarray(i, i+0x8000)); } return btoa(bin); }
+    function base64ToUint8Array(b64){ const bin=atob(b64); const arr=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); return arr; }
+    function encodeLengthBER(len){ if(len<=127) return new Uint8Array([len]); const bytes=[]; let v=len; while(v>0){ bytes.unshift(v&0xff); v>>=8; } return new Uint8Array([0x80|bytes.length,...bytes]); }
+    function buildTLV(entries){ let total=0; const parts=[]; entries.forEach(e=>{ const lenEnc=encodeLengthBER(e.value.length); parts.push({tag:e.tag,lenEnc,value:e.value}); total += 1 + lenEnc.length + e.value.length; }); const out=new Uint8Array(total); let p=0; parts.forEach(part=>{ out[p++]=part.tag; out.set(part.lenEnc,p); p += part.lenEnc.length; out.set(part.value,p); p += part.value.length; }); return out; }
+    function loadQRCodeLibrary(){ return new Promise((resolve,reject)=>{ if(typeof QRCode !== 'undefined') return resolve(QRCode); const existing = document.getElementById('qrcode-lib'); if(existing){ if(existing.readyState==='complete' || existing.readyState==='loaded'){ return typeof QRCode !== 'undefined' ? resolve(window.QRCode) : reject(new Error('qrcode.min.js loaded but QRCode unavailable')); } existing.addEventListener('load',()=>{ if(typeof QRCode==='undefined') return reject(new Error('QRCode library did not initialize')); resolve(window.QRCode); }); existing.addEventListener('error',()=> reject(new Error('Failed to load qrcode.min.js'))); return; } const script = document.createElement('script'); script.id='qrcode-lib'; script.src='./qrcode.min.js?cachebuster=' + Date.now(); script.onload = () => { if(typeof QRCode === 'undefined') return reject(new Error('QRCode library did not initialize')); resolve(window.QRCode); }; script.onerror = () => reject(new Error('Failed to load qrcode.min.js')); document.head.appendChild(script); }); }
+    function tableToSvgDataUrl(table){ const rows = Array.from(table.rows); if(!rows.length) return ''; const cols = rows[0].cells.length; const w = parseInt(rows[0].cells[0]?.style.width) || 1; const h = parseInt(rows[0].cells[0]?.style.height) || 1; const width = cols * w; const height = rows.length * h; let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">`; for(let y=0;y<rows.length;y++){ const cells = Array.from(rows[y].cells); for(let x=0;x<cells.length;x++){ const cell = cells[x]; const bg = cell.style.backgroundColor || cell.style.background || window.getComputedStyle(cell).backgroundColor; if(!bg || bg==='transparent' || bg==='rgba(0, 0, 0, 0)') continue; svg += `<rect x="${x*w}" y="${y*h}" width="${w}" height="${h}" fill="${bg}"/>`; }} svg += '</svg>'; return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); }
+    async function renderQRCode(data){ const container=document.createElement('div'); container.style.position='fixed'; container.style.left='-10000px'; container.style.top='-10000px'; document.body.appendChild(container); if(typeof QRCode === 'undefined'){ await loadQRCodeLibrary(); }
+      if(typeof QRCode === 'undefined'){ document.body.removeChild(container); throw new Error('QRCode library is unavailable'); }
+      new QRCode(container,{text:data,typeNumber:0,width:200,height:200,correctLevel:QRCode.CorrectLevel.H}); const img=container.querySelector('img'); const canvas=container.querySelector('canvas'); const svg=container.querySelector('svg'); const table=container.querySelector('table'); let src='';
+      if(canvas){ try{ src = canvas.toDataURL('image/png'); }catch(e){ src = ''; } }
+      if(!src && img && img.src){ src = img.src; }
+      if(!src && svg){ const svgText = new XMLSerializer().serializeToString(svg); src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgText))); }
+      if(!src && table){ src = tableToSvgDataUrl(table); }
+      if(!src){ const actual=container.innerHTML.trim().replace(/\s+/g,' '); document.body.removeChild(container); throw new Error('QR Code generated but no image/canvas/svg/table output was found. Rendered DOM: '+actual); }
+      $('Image1').src = src; document.body.removeChild(container); }
+    function computeTotals(){ const total=parseFloat($('textBox_Invoice_total').value)||0; const discount=parseFloat($('textBox_Discount').value)||0; const totalExcl=(total-discount); const vat=totalExcl * 0.15; $('textBox_Total_Excluding_VAT').value=totalExcl.toFixed(2); $('textBox_VAT_total').value=vat.toFixed(2); $('textBox_Total_Including_VAT').value=(totalExcl+vat).toFixed(2); }
+    async function generatePhase2(){ const btn=$('Button_Generate_QR_Code'); btn.disabled=true; btn.value='Loading . . .'; $('Label_Error').textContent=''; try{ computeTotals(); const seller=$('textBox_Seller_name').value.trim(); const vat=$('textBox_VAT_registration').value.trim(); const date=$('TextBox_date').value.trim(); const time=$('TextBox_Time').value.trim(); const timestamp = date && time ? date.replace(/\//g,'-') + 'T' + time : new Date().toISOString(); const invoiceTotal=$('textBox_Total_Including_VAT').value.trim() || '0.00'; const vatTotal=$('textBox_VAT_total').value.trim() || '0.00'; const tag1=enc(seller); const tag2=enc(vat); const tag3=enc(timestamp); const tag4=enc(invoiceTotal); const tag5=enc(vatTotal); const tag6=enc($('TextBox_Invoice_NO').value.trim()); const tag7=enc($('textBox_Customer_Name').value.trim()); const tag8=enc($('textBox_Customer_VAT_NO').value.trim()); const tag9=enc($('TextBox_Ref_NO').value.trim()); const tlv=buildTLV([{tag:1,value:tag1},{tag:2,value:tag2},{tag:3,value:tag3},{tag:4,value:tag4},{tag:5,value:tag5},{tag:6,value:tag6},{tag:7,value:tag7},{tag:8,value:tag8},{tag:9,value:tag9}]); const tlvBase64=arrayBufferToBase64(tlv); $('tlvOutput').value=tlvBase64; await renderQRCode(tlvBase64); } catch(e){ $('Label_Error').textContent=e.message; } finally{ btn.value='QR Code Phase 2'; btn.disabled=false; }}
+    document.addEventListener('DOMContentLoaded',()=>{ const btn = $('Button_Generate_QR_Code'); btn.addEventListener('click',(event)=>{ event.preventDefault(); generatePhase2(); }); $('textBox_Invoice_total').addEventListener('input',computeTotals); $('textBox_Discount').addEventListener('input',computeTotals); $('TextBox_date').value = new Date().toISOString().slice(0,10).replace(/-/g,'/'); $('TextBox_Time').value = new Date().toTimeString().slice(0,5); computeTotals(); });
+  </script>
+</body>
+</html>
