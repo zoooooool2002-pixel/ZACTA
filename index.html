@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="هيئة الزكاة والضريبي والجمارك والدخل في المملكة العربية السعودية - Zakat, Tax and Customs Authority in - QR Code TLV" />
   <meta name="keywords" content="هيئة الزكاة,الضريبي,الجمارك,الدخل,Zakat,Tax,Customs Authority,QR Code,TLV QR Code TLV,المملكة العربية السعودية,Saudi Arabia,FATOORA,TLV QR Code,TLV,E-invoicing,كيو ار كود,ZATCA QR Code,ZATCA,TLV code,QR Code TVL" />
-  <meta name="author" content="Ahmed Mansour | Mobile: +971505272246" />
+  <meta name="author" content="Mohammed  | Mobile: +900000000000" />
   <title>ZATCA Phase 2 TLV QR Generator</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
@@ -25,11 +25,11 @@
 </head>
 <body>
   <form method="post" action="./" id="form1">
-    <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-    <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
-    <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
-    <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="" />
-    <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="" />
+    <input type="hidden" name="_EVENTTARGET" id="_EVENTTARGET" value="" />
+    <input type="hidden" name="_EVENTARGUMENT" id="_EVENTARGUMENT" value="" />
+    <input type="hidden" name="_VIEWSTATE" id="_VIEWSTATE" value="" />
+    <input type="hidden" name="_VIEWSTATEGENERATOR" id="_VIEWSTATEGENERATOR" value="" />
+    <input type="hidden" name="_EVENTVALIDATION" id="_EVENTVALIDATION" value="" />
 
     <div class="card">
       <div class="page-title">QR Code TLV</div>
@@ -92,11 +92,10 @@
       </div>
     </div>
   </form>
-
-  <script id="qrcode-lib" src="./qrcode.min.js?cachebuster=1"></script>
+<script id="qrcode-lib" src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script>
     function $(id){return document.getElementById(id);}
-    function __doPostBack(eventTarget,eventArgument){ $('__EVENTTARGET').value=eventTarget; $('__EVENTARGUMENT').value=eventArgument; return false; }
+    function _doPostBack(eventTarget,eventArgument){ $('EVENTTARGET').value=eventTarget; $('_EVENTARGUMENT').value=eventArgument; return false; }
     const enc = s => new TextEncoder().encode(String(s));
     const dec = b => new TextDecoder().decode(b);
     function arrayBufferToBase64(buf){ const bytes=new Uint8Array(buf); let bin=''; for(let i=0;i<bytes.length;i+=0x8000){ bin += String.fromCharCode.apply(null, bytes.subarray(i, i+0x8000)); } return btoa(bin); }
@@ -104,7 +103,7 @@
     function encodeLengthBER(len){ if(len<=127) return new Uint8Array([len]); const bytes=[]; let v=len; while(v>0){ bytes.unshift(v&0xff); v>>=8; } return new Uint8Array([0x80|bytes.length,...bytes]); }
     function buildTLV(entries){ let total=0; const parts=[]; entries.forEach(e=>{ const lenEnc=encodeLengthBER(e.value.length); parts.push({tag:e.tag,lenEnc,value:e.value}); total += 1 + lenEnc.length + e.value.length; }); const out=new Uint8Array(total); let p=0; parts.forEach(part=>{ out[p++]=part.tag; out.set(part.lenEnc,p); p += part.lenEnc.length; out.set(part.value,p); p += part.value.length; }); return out; }
     function loadQRCodeLibrary(){ return new Promise((resolve,reject)=>{ if(typeof QRCode !== 'undefined') return resolve(QRCode); const existing = document.getElementById('qrcode-lib'); if(existing){ if(existing.readyState==='complete' || existing.readyState==='loaded'){ return typeof QRCode !== 'undefined' ? resolve(window.QRCode) : reject(new Error('qrcode.min.js loaded but QRCode unavailable')); } existing.addEventListener('load',()=>{ if(typeof QRCode==='undefined') return reject(new Error('QRCode library did not initialize')); resolve(window.QRCode); }); existing.addEventListener('error',()=> reject(new Error('Failed to load qrcode.min.js'))); return; } const script = document.createElement('script'); script.id='qrcode-lib'; script.src='./qrcode.min.js?cachebuster=' + Date.now(); script.onload = () => { if(typeof QRCode === 'undefined') return reject(new Error('QRCode library did not initialize')); resolve(window.QRCode); }; script.onerror = () => reject(new Error('Failed to load qrcode.min.js')); document.head.appendChild(script); }); }
-    function tableToSvgDataUrl(table){ const rows = Array.from(table.rows); if(!rows.length) return ''; const cols = rows[0].cells.length; const w = parseInt(rows[0].cells[0]?.style.width) || 1; const h = parseInt(rows[0].cells[0]?.style.height) || 1; const width = cols * w; const height = rows.length * h; let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">`; for(let y=0;y<rows.length;y++){ const cells = Array.from(rows[y].cells); for(let x=0;x<cells.length;x++){ const cell = cells[x]; const bg = cell.style.backgroundColor || cell.style.background || window.getComputedStyle(cell).backgroundColor; if(!bg || bg==='transparent' || bg==='rgba(0, 0, 0, 0)') continue; svg += `<rect x="${x*w}" y="${y*h}" width="${w}" height="${h}" fill="${bg}"/>`; }} svg += '</svg>'; return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); }
+    function tableToSvgDataUrl(table){ const rows = Array.from(table.rows); if(!rows.length) return ''; const cols = rows[0].cells.length; const w = parseInt(rows[0].cells[0]?.style.width) || 1; const h = parseInt(rows[0].cells[0]?.style.height) || 1; const width = cols * w; const height = rows.length * h; let svg = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">; for(let y=0;y<rows.length;y++){ const cells = Array.from(rows[y].cells); for(let x=0;x<cells.length;x++){ const cell = cells[x]; const bg = cell.style.backgroundColor || cell.style.background || window.getComputedStyle(cell).backgroundColor; if(!bg || bg==='transparent' || bg==='rgba(0, 0, 0, 0)') continue; svg += <rect x="${x*w}" y="${y*h}" width="${w}" height="${h}" fill="${bg}"/>; }} svg += '</svg>'; return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); }
     async function renderQRCode(data){ const container=document.createElement('div'); container.style.position='fixed'; container.style.left='-10000px'; container.style.top='-10000px'; document.body.appendChild(container); if(typeof QRCode === 'undefined'){ await loadQRCodeLibrary(); }
       if(typeof QRCode === 'undefined'){ document.body.removeChild(container); throw new Error('QRCode library is unavailable'); }
       new QRCode(container,{text:data,typeNumber:0,width:200,height:200,correctLevel:QRCode.CorrectLevel.H}); const img=container.querySelector('img'); const canvas=container.querySelector('canvas'); const svg=container.querySelector('svg'); const table=container.querySelector('table'); let src='';
